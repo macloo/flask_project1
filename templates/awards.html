@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title> Awards List </title>
+</head>
+
+<body>
+<div id="container">
+
+<h1>Hugo Awards: Novels</h1>
+
+<!--  render a list of elements with a for-loop
+      cat_types is a list in the .py file for this example -->
+<ul>
+{% for title in titles %}
+    <li><a href="/awards/{{ title }}">{{ title }}</a></li>
+	<!-- li><a href="{{ url_for('awards', title=title) }}">{{ title }}</a></li -->
+{% endfor %}
+</ul>
+
+
+</div> <!-- close container -->
+
+</body>
+</html>
