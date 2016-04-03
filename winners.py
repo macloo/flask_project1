@@ -37,5 +37,5 @@ def book(title):
     return render_template('book.html', title=t, author=a,
     year=y)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# if __name__ == '__main__':
+#    app.run(debug=True)
