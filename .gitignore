@@ -13,3 +13,6 @@ Thumbs.db
 # folders to be ignored
 env/
 junk/
+
+# files
+dbtest.py

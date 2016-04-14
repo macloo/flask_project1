@@ -4,12 +4,12 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
 
 # location of my MySQL databases at PythonAnywhere
-basedir = 'macloo.mysql.pythonanywhere-services.com'
+basedir = ''
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
 app.config['SQLALCHEMY_DATABASE_URI'] =\
-    'mysql://macloo:paTGIL2277@' + basedir + '/macloo$sockmarket'
+
 #   'mysql://username:password@localhost/db_name'
 
 # app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
