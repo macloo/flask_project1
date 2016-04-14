@@ -1,15 +1,12 @@
 import MySQLdb
-from flask import Flask, render_template, session, redirect, url_for, flash
+import dbconn
+from flask import Flask, render_template, session, redirect, url_for
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
 
-# location of my MySQL databases at PythonAnywhere
-basedir = ''
-
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'hard to guess string'
-app.config['SQLALCHEMY_DATABASE_URI'] =\
-
+app.config['SECRET_KEY'] = foobar
+app.config['SQLALCHEMY_DATABASE_URI'] = userpass + basedir + dbname
 #   'mysql://username:password@localhost/db_name'
 
 # app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
