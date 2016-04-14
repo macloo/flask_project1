@@ -5,8 +5,9 @@ from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = foobar
-app.config['SQLALCHEMY_DATABASE_URI'] = userpass + basedir + dbname
+app.config['SECRET_KEY'] = dbconn.foobar
+app.config['SQLALCHEMY_DATABASE_URI'] =\
+    dbconn.userpass + dbconn.basedir + dbconn.dbname
 #   'mysql://username:password@localhost/db_name'
 
 # app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
