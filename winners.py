@@ -26,16 +26,16 @@ def get_bookdata(source, title):
             year = row["Year"]
     return title, author, year
 
-@app.route('/awards')
+@app.route('/awards/')
 def awards():
     titles = get_titles(HUGO_WINNERS)
     return render_template('awards.html', titles=titles)
 
 @app.route('/awards/<title>')
 def book(title):
-    t, a, y = get_bookdata(HUGO_WINNERS, title)
-    return render_template('book.html', title=t, author=a,
-    year=y)
+    title, author, year = get_bookdata(HUGO_WINNERS, title)
+    return render_template('book.html', title=title, author=author,
+    year=year)
 
 # if __name__ == '__main__':
 #    app.run(debug=True)
