@@ -1,8 +1,6 @@
 import MySQLdb
 from flask import Flask, render_template, session, redirect, url_for, flash
-from flask.ext.script import Manager
 from flask.ext.bootstrap import Bootstrap
-from flask.ext.moment import Moment
 from flask.ext.sqlalchemy import SQLAlchemy
 
 # location of my MySQL databases at PythonAnywhere
@@ -17,10 +15,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] =\
 # app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-
-manager = Manager(app)
 bootstrap = Bootstrap(app)
-moment = Moment(app)
 db = SQLAlchemy(app)
 
 @app.route('/')
