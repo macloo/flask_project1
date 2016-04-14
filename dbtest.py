@@ -1,9 +1,10 @@
 import MySQLdb
+# PythonAnywhere requires this, not PyMySQL
 from flask import Flask, render_template, session, redirect, url_for, flash
 from flask.ext.bootstrap import Bootstrap
 from flask.ext.sqlalchemy import SQLAlchemy
 
-# location of my MySQL databases at PythonAnywhere
+# location of my MySQL databases at PythonAnywhere, used below
 basedir = 'macloo.mysql.pythonanywhere-services.com'
 
 app = Flask(__name__)
@@ -18,6 +19,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 bootstrap = Bootstrap(app)
 db = SQLAlchemy(app)
 
+# this is a test just to see if the database can connect
 @app.route('/')
 def testdb():
     if db.session.query('1').from_statement('SELECT 1').all():
