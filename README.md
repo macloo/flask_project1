@@ -11,3 +11,7 @@ The data source is a list of Python dictionaries. Example row:
 `{"Title":"Harry Potter and the Goblet of Fire","Author":"J. K. Rowling","Year":2001},`
 
 The .csv file is not used by the app but is in the repo for ease of reading.
+
+After installing all dependencies, run the app by entering its folder and typing:
+
+`$ python winners.py`
