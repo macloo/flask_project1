@@ -15,3 +15,7 @@ The .csv file is not used by the app but is in the repo for ease of reading.
 After installing all dependencies, run the app by entering its folder and typing:
 
 `$ python winners.py`
+
+## Why is this cool?
+
+With 47 lines of Python (including comments and blank lines!), this app produces 21 web pages. No database, no PHP, no AJAX, etc., etc.
