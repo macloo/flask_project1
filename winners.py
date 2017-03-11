@@ -14,7 +14,7 @@ app = Flask(__name__)
 def get_titles(source):
     titles = []
     for row in source:
-        title = row["Title"]
+        title = row["Title"].decode('utf-8')
         titles.append(title)
     return sorted(titles)
 
