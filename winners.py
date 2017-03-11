@@ -7,6 +7,9 @@ from hugo_winners import HUGO_WINNERS
 
 app = Flask(__name__)
 
+# for WSGI
+# application = app
+
 
 # define two functions to be used by the routes
 
@@ -14,7 +17,7 @@ app = Flask(__name__)
 def get_titles(source):
     titles = []
     for row in source:
-        title = row["Title"].decode('utf-8')
+        title = row["Title"]
         titles.append(title)
     return sorted(titles)
 
@@ -27,9 +30,10 @@ def get_bookdata(source, title):
             year = row["Year"]
     return title, author, year
 
-# three decorators here, but only one route
 @app.route('/')
-@app.route('/index.html')
+def home():
+    return '<h1>Go to /awards/</h1>'
+
 @app.route('/awards/')
 def awards():
     titles = get_titles(HUGO_WINNERS)

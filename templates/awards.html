@@ -16,11 +16,17 @@
 <p>This is an example of a simple Flask app.</p>
 
 <!--  render a list of elements with a for-loop
-      title comes from winners.py -->
+      title comes from winners.py
+      Note style for route, def book(title):
+      (it is tricky! Quotes around 'book' - no quotes for title -
+      second title means the one that was passed in - so really this
+      is arg = variable )
+    -->
+
 <ul>
 {% for title in titles %}
 
-    <li><a href="/awards/{{ title }}">{{ title }}</a></li>
+    <li><a href="{{ url_for('book', title=title) }}">{{ title }}</a></li>
 
 {% endfor %}
 </ul>
