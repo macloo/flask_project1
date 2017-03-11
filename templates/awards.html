@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name=viewport content="width=device-width, initial-scale=1">
     <title> Awards List </title>
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif|Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 
 <body>
@@ -11,12 +13,15 @@
 
 <h1>Hugo Awards: Novels</h1>
 
+<p>This is an example of a simple Flask app.</p>
+
 <!--  render a list of elements with a for-loop
-      cat_types is a list in the .py file for this example -->
+      title comes from winners.py -->
 <ul>
 {% for title in titles %}
+
     <li><a href="/awards/{{ title }}">{{ title }}</a></li>
-	<!-- li><a href="{{ url_for('awards', title=title) }}">{{ title }}</a></li -->
+
 {% endfor %}
 </ul>
 

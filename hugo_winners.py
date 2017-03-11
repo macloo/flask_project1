@@ -20,4 +20,4 @@ HUGO_WINNERS = [
 {"Title":"To Say Nothing of the Dog","Author":"Connie Willis","Year":1999},
 {"Title":"Forever Peace","Author":"Joe Haldeman","Year":1998},
 {"Title":"Blue Mars","Author":"Kim Stanley Robinson","Year":1997}
-];
+]

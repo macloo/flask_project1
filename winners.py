@@ -1,60 +1,47 @@
-import MySQLdb
-import dbconn
-from flask import Flask, render_template, session, redirect, url_for
-from flask.ext.bootstrap import Bootstrap
-from flask.ext.sqlalchemy import SQLAlchemy
+# coding: utf-8
+"""
+A small Flask app reads from a datasource
+"""
+from flask import Flask, render_template
+from hugo_winners import HUGO_WINNERS
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = dbconn.foobar
-app.config['SQLALCHEMY_DATABASE_URI'] =\
-    dbconn.userpass + dbconn.basedir + dbconn.dbname
-#   'mysql://username:password@localhost/db_name'
 
-# app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-bootstrap = Bootstrap(app)
-db = SQLAlchemy(app)
+# define two functions to be used by the routes
 
+# retrieve all the titles from the dataset and put them into a list
+def get_titles(source):
+    titles = []
+    for row in source:
+        title = row["Title"]
+        titles.append(title)
+    return sorted(titles)
+
+# find the row that matches the title in the URL, retrieve author and year
+def get_bookdata(source, title):
+    for row in source:
+        if title == row["Title"]:
+            # decode handles accented characters
+            author = row["Author"].decode('utf-8')
+            year = row["Year"]
+    return title, author, year
+
+# three decorators here, but only one route
 @app.route('/')
-def testdb():
-    if db.session.query('1').from_statement('SELECT 1').all():
-        return 'It works.'
-    else:
-        return 'Something is broken.'
+@app.route('/index.html')
+@app.route('/awards/')
+def awards():
+    titles = get_titles(HUGO_WINNERS)
+    # pass the sorted list of titles to the template
+    return render_template('awards.html', titles=titles)
 
-'''
-class Sock(db.Model):
-    __tablename__ = 'socks'
-    __table_args__ = {'autoload':True}
-    def __repr__(self):
-        # return '<Sock %r>' % self.name
-        return '<Sock %r>' % self.id
-'''
+@app.route('/awards/<title>')
+def book(title):
+    title, author, year = get_bookdata(HUGO_WINNERS, title)
+    # pass the data for the selected book to the template
+    return render_template('book.html', title=title, author=author,
+    year=year)
 
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
-
-@app.errorhandler(500)
-def internal_server_error(e):
-    return render_template('500.html'), 500
-
-'''
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    given_id = "16"
-    id = Sock.query.filter_by(id=given_id)
-    if id is None:
-        session['known'] = False
-    else:
-        session['known'] = True
-        session['id'] = id
-    return render_template('index.html', name=session.get('name'),
-                           known=session.get('known', False))
-'''
-
-# if __name__ == '__main__':
-#     manager.run()
-# if __name__ == '__main__':
-#    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
