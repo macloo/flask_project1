@@ -21,12 +21,14 @@
       (it is tricky! Quotes around 'book' - no quotes for title -
       second title means the one that was passed in - so really this
       is arg = variable )
+      If the title had no spaces, we would not need |replace(" ", "_")
+      but we must handle the spaces, or Apache server chokes
     -->
 
 <ul>
 {% for title in titles %}
 
-    <li><a href="{{ url_for('book', title=title) }}">{{ title }}</a></li>
+    <li><a href="{{ url_for('book', title=title|replace(" ", "_")) }}">{{ title }}</a></li>
 
 {% endfor %}
 </ul>

@@ -42,7 +42,11 @@ def awards():
 
 @app.route('/awards/<title>')
 def book(title):
-    title, author, year = get_bookdata(HUGO_WINNERS, title)
+    # the URL will have underscores in place of spaces - fix that
+    fixed_title = title.replace("_", " ")
+    # get variables for the book detail page: pass title with spaces restored
+    # to the function that will find that book's record
+    title, author, year = get_bookdata(HUGO_WINNERS, fixed_title)
     # pass the data for the selected book to the template
     return render_template('book.html', title=title, author=author,
     year=year)
